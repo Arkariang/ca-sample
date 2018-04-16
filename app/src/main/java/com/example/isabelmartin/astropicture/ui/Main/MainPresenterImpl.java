@@ -1,7 +1,8 @@
-package com.example.isabelmartin.astropicture;
+package com.example.isabelmartin.astropicture.ui.Main;
 import android.content.Context;
 import android.net.Uri;
 
+import com.example.isabelmartin.astropicture.R;
 import com.example.isabelmartin.astropicture.application.SampleApplication;
 import com.example.isabelmartin.astropicture.constants.Constants;
 import com.example.isabelmartin.astropicture.dagger.AppComponent;
@@ -16,6 +17,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;
+
+import dagger.Component;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -26,8 +29,6 @@ public class MainPresenterImpl implements MainPresenter {
 
     private MainActivityView viewResponder;
 
-    AppComponent component = SampleApplication.getComponent();
-
     @Inject OkHttpClient client;
     @Inject Context context;
 
@@ -35,24 +36,23 @@ public class MainPresenterImpl implements MainPresenter {
 
     private Boolean isLoadingData = false;
 
-    public MainPresenterImpl() {
-        component.inject(this);
+    @Inject
+    public MainPresenterImpl(){
     }
 
     @Override
     public void setView(MainActivityView view) {
-        viewResponder = view;
-        viewResponder.setScrollEnabledAndSo();
+        if (view != null) {
+            viewResponder = view;
+            viewResponder.setScrollEnabledAndSo();
+        }
     }
 
     @Override
     public void requestPhoto() {
         isLoadingData = true;
 
-        Request request = new Request.Builder()
-                .url(updateDate()).build();
-
-        client.newCall(request)
+        client.newCall(getRequest())
                 .enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -88,6 +88,11 @@ public class MainPresenterImpl implements MainPresenter {
         return isLoadingData;
     }
 
+    public Request getRequest() {
+        Request request = new Request.Builder()
+                .url(updateDate()).build();
+        return request;
+    }
 
     private String updateDate() {
 

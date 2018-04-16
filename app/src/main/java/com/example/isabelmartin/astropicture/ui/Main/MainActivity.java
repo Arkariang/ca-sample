@@ -1,10 +1,11 @@
-package com.example.isabelmartin.astropicture;
+package com.example.isabelmartin.astropicture.ui.Main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.isabelmartin.astropicture.R;
 import com.example.isabelmartin.astropicture.application.SampleApplication;
 import com.example.isabelmartin.astropicture.dagger.AppComponent;
 import com.example.isabelmartin.astropicture.model.Photo;
@@ -12,9 +13,6 @@ import com.example.isabelmartin.astropicture.model.Photo;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 public class MainActivity extends AppCompatActivity implements MainActivityView{
 

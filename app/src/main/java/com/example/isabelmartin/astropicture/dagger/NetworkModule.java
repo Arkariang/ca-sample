@@ -1,5 +1,8 @@
 package com.example.isabelmartin.astropicture.dagger;
 
+import android.net.Uri;
+
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -16,5 +19,4 @@ public class NetworkModule {
         OkHttpClient client = new OkHttpClient();
         return client;
     }
-
 }

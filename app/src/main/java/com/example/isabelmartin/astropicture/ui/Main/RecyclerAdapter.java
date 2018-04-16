@@ -1,4 +1,4 @@
-package com.example.isabelmartin.astropicture;
+package com.example.isabelmartin.astropicture.ui.Main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.isabelmartin.astropicture.R;
 import com.example.isabelmartin.astropicture.model.Photo;
+import com.example.isabelmartin.astropicture.ui.detail.PhotoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

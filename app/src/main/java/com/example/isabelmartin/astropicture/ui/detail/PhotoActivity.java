@@ -1,10 +1,11 @@
-package com.example.isabelmartin.astropicture;
+package com.example.isabelmartin.astropicture.ui.detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.isabelmartin.astropicture.R;
 import com.example.isabelmartin.astropicture.application.SampleApplication;
 import com.example.isabelmartin.astropicture.dagger.AppComponent;
 import com.example.isabelmartin.astropicture.model.Photo;

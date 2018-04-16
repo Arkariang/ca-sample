@@ -10,15 +10,19 @@ import dagger.Provides;
 
 @Module
 public class AppModule {
-    private Application app;
+    private final Context context;
+
+    public AppModule(Context applicationContext) {
+        context = applicationContext;
+    }
 
     public AppModule(Application application) {
-        app = application;
+        context = application.getApplicationContext();
     }
 
     @Provides
     @Singleton
     Context provideContext() {
-        return app;
+        return context;
     }
 }

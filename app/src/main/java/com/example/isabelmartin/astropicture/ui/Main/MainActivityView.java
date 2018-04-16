@@ -1,4 +1,4 @@
-package com.example.isabelmartin.astropicture;
+package com.example.isabelmartin.astropicture.ui.Main;
 
 import com.example.isabelmartin.astropicture.model.Photo;
 
