@@ -16,7 +16,6 @@ import okhttp3.OkHttpClient;
         AppModule.class,
         NetworkModule.class,
         MainPresenterModule.class,
-        MainPresenterModuleImpModule.class
 })
 public interface AppComponent {
 

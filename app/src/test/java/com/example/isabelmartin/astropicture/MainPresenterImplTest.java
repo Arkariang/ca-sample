@@ -5,7 +5,6 @@ import com.example.isabelmartin.astropicture.dagger.AppComponent;
 import com.example.isabelmartin.astropicture.dagger.AppModule;
 import com.example.isabelmartin.astropicture.dagger.DaggerAppComponent;
 import com.example.isabelmartin.astropicture.dagger.MainPresenterModule;
-import com.example.isabelmartin.astropicture.dagger.MainPresenterModuleImpModule;
 import com.example.isabelmartin.astropicture.dagger.NetworkModule;
 import com.example.isabelmartin.astropicture.ui.Main.MainPresenter;
 import com.example.isabelmartin.astropicture.ui.Main.MainPresenterImpl;
@@ -13,7 +12,6 @@ import com.example.isabelmartin.astropicture.ui.Main.MainPresenterImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.stubbing.OngoingStubbing;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowApplication;
 
@@ -21,8 +19,6 @@ import java.io.IOException;
 
 import javax.inject.Singleton;
 
-import dagger.Binds;
-import dagger.Module;
 import dagger.Provides;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -100,10 +96,8 @@ public class MainPresenterImplTest {
     public void setUp(){
         app = ShadowApplication.getInstance();
 
-
         componentTest = DaggerAppComponent.builder()
                 .appModule(new AppModule(app.getApplicationContext()))
-                .mainPresenterModuleImpModule(new MockMainPresenterImpModule())
                 .networkModule(new MockNetworkingModule())
                 .build();
     }
@@ -127,10 +121,9 @@ public class MainPresenterImplTest {
         }
     }
 
-    class MockMainPresenterImpModule extends MainPresenterModuleImpModule {
-        @Provides
-        @Singleton
-        public MainPresenterImpl provideMainPresenterImpl() {
+    class MockMainPresenterImpModule extends MainPresenterModule {
+        @Override
+        public MainPresenter bindMainPresenter(MainPresenterImpl mainPresenter) {
             impl = mock(MainPresenterImpl.class);
             when(impl.getRequest()).thenReturn(request);
             return impl;
